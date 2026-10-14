@@ -1,344 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SANBET - Uganda #1 Betting</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif}
-body{background:#0a1120;color:#fff;padding-bottom:180px}
-.hdr{background:#070d1c;border-bottom:2px solid #ffcc00;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-.logo{font-weight:900;font-size:22px;color:#ffcc00;letter-spacing:1px}.logo span{color:#fff}
-.lbtn{background:#ffcc00;color:#000;padding:9px 18px;border-radius:25px;font-weight:900;border:0;font-size:13px;cursor:pointer}
-.hero{background:#0d152a;padding:28px 14px;text-align:center;border-bottom:1px solid #1a2744}
-.hero h1{font-size:26px;font-weight:900;line-height:1.2}.hero h1 b{color:#ffcc00}
-.hero p{color:#7a8aaa;font-size:13px;margin:10px 0}
-.hero.cta{background:#ffcc00;color:#000;padding:14px 28px;border-radius:30px;font-weight:900;border:0;font-size:15px;margin:14px 0;cursor:pointer}
-.moneyBar{background:#121d33;display:flex;gap:6px;padding:8px;align-items:center;border-bottom:1px solid #1e2d4d;position:sticky;top:52px;z-index:90}
-.balBox{background:#1a2744;border:1px solid #2a3c60;border-radius:8px;padding:6px 10px;text-align:center;min-width:105px}
-.balBox small{font-size:7px;color:#7a8aaa;display:block}.balBox b{color:#ffcc00;font-size:13px}
-.mbtn{flex:1;padding:9px;border-radius:20px;border:0;font-weight:900;font-size:10px;cursor:pointer}
-.dep{background:#00c853;color:#fff}.with{background:#ff6d00;color:#fff}.hist{background:#1e2e4f;color:#fff;border:1px solid #2a3c60}
-.tabsTop{display:flex;gap:6px;padding:10px;background:#070d1c;overflow:auto;position:sticky;top:95px;z-index:80;border-bottom:1px solid #1e2d4d}
-.tabsTop b{padding:10px 16px;border-radius:20px;background:#1a2744;border:1px solid #2a3c60;font-size:11px;white-space:nowrap;cursor:pointer}
-.tabsTop b.on{background:#ffcc00;color:#000;font-weight:900}
-.subTabs{display:flex;gap:6px;padding:8px 10px;background:#0a1120;overflow:auto}
-.subTabs span{padding:7px 14px;border-radius:15px;background:#1a2744;border:1px solid #2a3c60;font-size:10px;cursor:pointer;white-space:nowrap}
-.subTabs span.on{background:#fff;color:#000;font-weight:900}
-.secTitle{padding:12px 14px;font-size:14px;font-weight:900;display:flex;justify-content:space-between;align-items:center}
-.match{background:#1a2744;margin:6px 10px;border-radius:12px;border:1px solid #2a3c60;overflow:hidden}
-.match.live{border-left:4px solid #ff2222}.matchHead{padding:12px;display:flex;justify-content:space-between;align-items:center}
-.team b{font-size:13px}.team small{font-size:10px;color:#8aa0c8;display:block;margin-top:3px}
-.oddsRow{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2a3c60}
-.oddsRow button{background:#1e2e4f;color:#fff;border:0;padding:12px 4px;font-weight:800;font-size:13px;cursor:pointer}
-.oddsRow button.on{background:#ffcc00;color:#000}.oddsRow small{display:block;font-size:8px;color:#8aa0c8}
-.slip{position:fixed;bottom:0;left:0;right:0;background:#121d33;border-top:3px solid #ffcc00;padding:12px;z-index:120;border-radius:18px 18px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.7);max-height:75vh;overflow:auto;display:none}
-.slip.show{display:block}
-.betItem{display:flex;justify-content:space-between;padding:8px 10px;background:#1a2744;border-radius:8px;margin:4px 0;border:1px solid #2a3c60;font-size:11px}
-.box{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:14px;z-index:200}
-.box.show{display:flex}.card{background:#1a2744;border:2px solid #ffcc00;border-radius:16px;padding:18px;width:100%;max-width:380px;max-height:92vh;overflow:auto}
-.card input,.card select{width:100%;padding:12px;border-radius:10px;border:1px solid #31487f;background:#0a1120;color:#fff;margin:6px 0;font-size:13px}
-.btn{width:100%;background:#ffcc00;color:#000;padding:13px;border-radius:25px;font-weight:900;border:0;margin-top:8px;font-size:13px;cursor:pointer}
-.tb{flex:1;padding:10px;border-radius:10px;border:1px solid #31487f;background:#1e2e4f;color:#fff;font-weight:800;cursor:pointer}.tb.on{background:#ffcc00;color:#000}
-.betHistory{max-height:60vh;overflow:auto}
-.hRow{display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #1a2440;font-size:11px}
-.badge{padding:3px 8px;border-radius:10px;font-size:8px;font-weight:900}
-.won{background:#00c853;color:#fff}.pending{background:#ffcc00;color:#000}.lost{background:#ff2222;color:#fff}
-</style>
-</head>
-<body>
-
-<div class="hdr">
-  <div class="logo">SAN<span>BET</span></div>
-  <button class="lbtn" id="Lbtn" onclick="openL()">LOGIN / JOIN</button>
-</div>
-
-<div class="hero">
-  <h1>BET BIG, <b>WIN BIGGER</b></h1>
-  <p>Uganda's #1 Sports Betting - Instant MTN & Airtel Money Payouts</p>
-  <button class="cta" onclick="openL()">START WINNING NOW</button>
-  <div style="font-size:11px;color:#5a6a8a">LIVE NOW: <span id="liveCount">127</span> Matches</div>
-</div>
-
-<div class="moneyBar" id="moneyBar" style="display:none">
-  <div class="balBox"><small>BALANCE</small><b id="B">UGX 0</b></div>
-  <button class="mbtn dep" onclick="openMoney('dep')">DEPOSIT</button>
-  <button class="mbtn with" onclick="openMoney('with')">WITHDRAW</button>
-  <button class="mbtn hist" onclick="openMoney('hist')">HISTORY</button>
-</div>
-
-<div class="tabsTop">
-  <b id="t-up" class="on" onclick="showMain('up')">🔥 TODAY</b>
-  <b id="t-live" onclick="showMain('live')">🔴 LIVE IN PLAY</b>
-  <b id="t-upcom" onclick="showMain('upcom')">📅 UPCOMING</b>
-  <b id="t-bets" onclick="showMain('bets')">📋 MY BETS</b>
-</div>
-
-<!-- TODAY -->
-<div id="view-up">
-  <div class="secTitle">⚽ Today's Top Matches</div>
-  <div id="todayList"></div>
-  <div style="background:#ffcc00;color:#000;margin:12px;border-radius:12px;padding:12px;text-align:center;font-weight:900;font-size:13px">💰 100% WELCOME BONUS UP TO UGX 200,000 - JOIN NOW!</div>
-</div>
-
-<!-- LIVE -->
-<div id="view-live" style="display:none">
-  <div class="secTitle"><span>🔴 Live In Play - <span id="liveNum">18</span> Games</span><span style="font-size:10px;color:#ff4444">● LIVE</span></div>
-  <div id="liveList"></div>
-</div>
-
-<!-- UPCOMING -->
-<div id="view-upcom" style="display:none">
-  <div class="subTabs" id="upcomFilter">
-    <span class="on" onclick="filterUp('all')">ALL</span>
-    <span onclick="filterUp('UPL')">UPL</span>
-    <span onclick="filterUp('EPL')">EPL</span>
-    <span onclick="filterUp('LaLiga')">LaLiga</span>
-  </div>
-  <div id="upcomList"></div>
-</div>
-
-<!-- MY BETS -->
-<div id="view-bets" style="display:none">
-  <div class="subTabs">
-    <span id="f-all" class="on" onclick="filterBets('all')">ALL</span>
-    <span id="f-pending" onclick="filterBets('pending')">PENDING</span>
-    <span id="f-won" onclick="filterBets('won')">WON ✅</span>
-    <span id="f-lost" onclick="filterBets('lost')">LOST</span>
-  </div>
-  <div class="betHistory" id="betHistory"></div>
-</div>
-
-<!-- BETSLIP -->
-<div class="slip" id="S">
-  <div style="display:flex;justify-content:space-between;align-items:center"><b id="T" style="font-size:12px">Betslip (0)</b><span><span style="background:#ffcc00;color:#000;padding:5px 12px;border-radius:15px;font-size:10px;font-weight:900;cursor:pointer" onclick="bookBet()">BOOK CODE</span> <span onclick="clr()" style="color:#ff6666;font-size:12px;cursor:pointer;margin-left:8px">Clear ✕</span></span></div>
-  <div id="I" style="margin:8px 0"></div>
-  <div style="background:#0a1120;border-radius:12px;padding:12px">
-    <input id="K" type="number" placeholder="Stake UGX min 1000" style="width:100%;padding:12px;border-radius:10px;background:#1a2744;color:#fff;border:1px solid #31487f">
-    <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:11px"><span>Total Odds:</span><b id="totOdds" style="color:#ffcc00">0.00</b></div>
-    <div style="display:flex;justify-content:space-between;margin:6px 0;font-size:14px;font-weight:900"><span>Potential Win:</span><b id="W" style="color:#00ff88">UGX 0</b></div>
-    <button class="btn" onclick="placeBet()">PLACE BET ➔</button>
-  </div>
-</div>
-
-<!-- LOGIN / REGISTER BOX -->
-<div class="box" id="LB">
-  <div class="card">
-    <h3 style="color:#ffcc00;text-align:center">SANBET - LOGIN / JOIN</h3>
-    <div style="display:flex;gap:6px;margin:12px 0">
-      <button id="tbL" class="tb on" onclick="sw('L')">LOGIN</button>
-      <button id="tbR" class="tb" onclick="sw('R')">REGISTER</button>
-    </div>
-    <div id="fL">
-      <input id="phL" placeholder="Phone: 07XXXXXXXX">
-      <input id="pwL" type="password" placeholder="Password">
-      <button class="btn" onclick="doLogin()">LOGIN NOW ➔</button>
-    </div>
-    <div id="fR" style="display:none">
-      <input id="phR" placeholder="Phone: 07XXXXXXXX">
-      <input id="pwR" type="password" placeholder="Password min 4">
-      <input id="pwR2" type="password" placeholder="Confirm Password">
-      <div style="background:#0a3a1f;border-radius:8px;padding:10px;text-align:center;font-size:12px;margin:8px 0;color:#00ff88;font-weight:900">🎁 100% BONUS UGX 10,000 FREE!</div>
-      <button class="btn" onclick="doReg()">REGISTER + GET BONUS ➔</button>
-    </div>
-    <button class="btn" style="background:#1e2e4f;color:#fff" onclick="closeL()">CLOSE</button>
-    <p id="msg" style="font-size:11px;color:#ff6666;text-align:center;margin-top:8px;font-weight:700"></p>
-  </div>
-</div>
-
-<!-- DEPOSIT/WITHDRAW BOX -->
-<div class="box" id="MB">
-  <div class="card">
-    <h3 id="mTitle" style="color:#ffcc00;text-align:center">DEPOSIT - REAL MTN</h3>
-    <div id="mDep">
-      <select id="depNet"><option>MTN MoMo - REAL</option><option>Airtel Money</option></select>
-      <input id="depPhone" placeholder="Phone: 07XXXXXXXX">
-      <input id="depAmt" type="number" placeholder="Amount min 2000 UGX">
-      <button class="btn" style="background:#00c853;color:#fff" onclick="doDep()">DEPOSIT NOW ➔</button>
-      <div style="text-align:center;margin-top:10px">
-        <small style="color:#7a8aaa">Status: <span id="keyStatus">Checking MTN Keys...</span></small><br>
-        <button style="background:#1a2744;border:1px solid #31487f;color:#ffcc00;padding:6px 12px;border-radius:15px;font-size:10px;margin-top:6px" onclick="setupMTN()">⚙️ Setup MTN Keys</button>
-      </div>
-    </div>
-    <div id="mWith" style="display:none">
-      <select id="withNet"><option>MTN MoMo</option><option>Airtel Money</option></select>
-      <input id="withPhone" placeholder="Phone to receive">
-      <input id="withAmt" type="number" placeholder="Min 5000 UGX">
-      <div style="font-size:11px;color:#ffcc00">Balance: <b id="withBal">UGX 0</b></div>
-      <button class="btn" style="background:#ff6d00;color:#fff" onclick="doWith()">WITHDRAW ➔</button>
-    </div>
-    <div id="mHist" style="display:none"><div id="histList"></div></div>
-    <button class="btn" style="background:#1e2e4f;color:#fff" onclick="closeM()">CLOSE</button>
-    <p id="mMsg" style="font-size:11px;text-align:center;margin-top:8px"></p>
-  </div>
-</div>
-
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SANBET ULTIMATE - ALL IN ONE</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#070d1c;color:#fff;padding-bottom:200px}.hdr{background:#070d1c;border-bottom:3px solid #ffcc00;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}.logo{font-weight:900;font-size:24px;color:#ffcc00}.lbtn{background:#ffcc00;color:#000;padding:9px 18px;border-radius:25px;font-weight:900;border:0;font-size:13px}.hero{background:linear-gradient(135deg,#0d152a,#1a2744);padding:30px 14px;text-align:center;border-bottom:1px solid #1e2d4d}.hero h1{font-size:28px;font-weight:900}.hero h1 b{color:#ffcc00}.hero p{color:#7a8aaa;font-size:13px;margin:10px 0}.hero.cta{background:#ffcc00;color:#000;padding:14px 30px;border-radius:30px;font-weight:900;border:0;font-size:15px;margin:12px 0}.moneyBar{background:#121d33;display:flex;gap:6px;padding:8px;align-items:center;border-bottom:1px solid #1e2d4d;position:sticky;top:52px;z-index:90}.balBox{background:#1a2744;border:1px solid #2a3c60;border-radius:8px;padding:6px 10px;text-align:center;min-width:105px}.balBox small{font-size:7px;color:#7a8aaa;display:block}.balBox b{color:#ffcc00;font-size:13px}.mbtn{flex:1;padding:9px;border-radius:20px;border:0;font-weight:900;font-size:10px}.dep{background:#00c853;color:#fff}.with{background:#ff6d00;color:#fff}.hist{background:#1e2e4f;color:#fff;border:1px solid #2a3c60}.adminBtn{background:#9c27b0;color:#fff}.tabsTop{display:flex;gap:6px;padding:10px;background:#070d1c;overflow:auto;position:sticky;top:95px;z-index:80;border-bottom:1px solid #1e2d4d}.tabsTop b{padding:10px 16px;border-radius:20px;background:#1a2744;border:1px solid #2a3c60;font-size:11px;white-space:nowrap;cursor:pointer}.tabsTop b.on{background:#ffcc00;color:#000}.subTabs{display:flex;gap:6px;padding:8px 10px;background:#0a1120;overflow:auto}.subTabs span{padding:7px 14px;border-radius:15px;background:#1a2744;border:1px solid #2a3c60;font-size:10px;cursor:pointer;white-space:nowrap}.subTabs span.on{background:#fff;color:#000;font-weight:900}.secTitle{padding:12px 14px;font-size:14px;font-weight:900;display:flex;justify-content:space-between}.match{background:#1a2744;margin:6px 10px;border-radius:12px;border:1px solid #2a3c60;overflow:hidden}.match.live{border-left:4px solid #ff2222}.matchHead{padding:12px;display:flex;justify-content:space-between}.team b{font-size:13px}.team small{font-size:10px;color:#8aa0c8;display:block;margin-top:3px}.oddsRow{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2a3c60}.oddsRow button{background:#1e2e4f;color:#fff;border:0;padding:12px 4px;font-weight:800;font-size:13px}.oddsRow button.on{background:#ffcc00;color:#000}.slip{position:fixed;bottom:0;left:0;right:0;background:#121d33;border-top:3px solid #ffcc00;padding:12px;z-index:120;border-radius:18px 18px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.7);max-height:75vh;overflow:auto;display:none}.slip.show{display:block}.box{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:14px;z-index:200}.box.show{display:flex}.card{background:#1a2744;border:2px solid #ffcc00;border-radius:16px;padding:18px;width:100%;max-width:420px;max-height:92vh;overflow:auto}.card input,.card select{width:100%;padding:12px;border-radius:10px;border:1px solid #31487f;background:#0a1120;color:#fff;margin:6px 0;font-size:13px}.btn{width:100%;background:#ffcc00;color:#000;padding:13px;border-radius:25px;font-weight:900;border:0;margin-top:8px;font-size:13px}.tb{flex:1;padding:10px;border-radius:10px;border:1px solid #31487f;background:#1e2e4f;color:#fff;font-weight:800}.tb.on{background:#ffcc00;color:#000}.badge{padding:3px 8px;border-radius:10px;font-size:8px;font-weight:900}.won{background:#00c853;color:#fff}.pending{background:#ffcc00;color:#000}.lost{background:#ff2222;color:#fff}.avBox{background:#1a2744;margin:10px;padding:16px;border-radius:14px;border:1px solid #ffcc00;text-align:center}.aviPlane{font-size:40px;font-weight:900;color:#ffcc00}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px}.casinoCard{background:#1a2744;border-radius:12px;padding:14px;text-align:center;border:1px solid #2a3c60}</style></head><body>
+<div class="hdr"><div class="logo">SANBET</div><button class="lbtn" id="Lbtn" onclick="openL()">LOGIN / JOIN</button></div>
+<div class="hero"><h1>BET BIG, <b>WIN BIGGER</b></h1><p>Uganda's #1 - MTN & Airtel Instant - 127 LIVE Now</p><button class="cta" onclick="openL()">START WINNING NOW</button><div style="font-size:11px;color:#5a6a8a">LIVE: <span id="liveCount">127</span> Matches • ADMIN MODE READY</div></div>
+<div class="moneyBar" id="moneyBar" style="display:none"><div class="balBox"><small>BALANCE</small><b id="B">UGX 0</b></div><button class="mbtn dep" onclick="openMoney('dep')">DEPOSIT</button><button class="mbtn with" onclick="openMoney('with')">WITHDRAW</button><button class="mbtn hist" onclick="openMoney('hist')">HISTORY</button><button class="mbtn adminBtn" onclick="openAdmin()">ADMIN</button></div>
+<div class="tabsTop"><b id="t-up" class="on" onclick="showMain('up')">🔥 TODAY</b><b id="t-live" onclick="showMain('live')">🔴 LIVE</b><b id="t-upcom" onclick="showMain('upcom')">📅 UPCOMING</b><b id="t-av" onclick="showMain('av')">✈️ AVIATOR</b><b id="t-cas" onclick="showMain('cas')">🎰 CASINO</b><b id="t-bets" onclick="showMain('bets')">📋 MY BETS</b></div>
+<div id="view-up"><div class="secTitle"><span>⚽ Today's Top</span><span style="font-size:10px;color:#00ff88">● 100+ MATCHES</span></div><div id="todayList"></div><div style="background:#ffcc00;color:#000;margin:12px;border-radius:12px;padding:12px;text-align:center;font-weight:900">💰 100% WELCOME BONUS UGX 200,000 - JOIN NOW!</div></div>
+<div id="view-live" style="display:none"><div class="secTitle"><span>🔴 Live In Play</span><span id="liveNum">18 LIVE</span></div><div id="liveList"></div></div>
+<div id="view-upcom" style="display:none"><div class="subTabs" id="upcomFilter"><span class="on" onclick="filterUp('all')">ALL 100+</span><span onclick="filterUp('UPL')">UPL</span><span onclick="filterUp('EPL')">EPL</span><span onclick="filterUp('LaLiga')">LaLiga</span><span onclick="filterUp('Serie')">Serie A</span></div><div id="upcomList"></div></div>
+<div id="view-av" style="display:none"><div class="avBox"><div class="aviPlane" id="mult">1.00x ✈️</div><div style="font-size:11px;color:#8aa0c8">Crash Game - Cashout before crash!</div><div style="display:flex;gap:8px;margin-top:12px"><input id="aviStake" type="number" placeholder="Stake 1000" style="flex:1;padding:12px;border-radius:10px;background:#0a1120;color:#fff;border:1px solid #31487f"><button class="btn" style="flex:1;margin:0" onclick="placeAv()">BET ✈️</button></div><div style="display:flex;gap:8px;margin-top:8px"><button class="btn" style="background:#00c853;color:#fff;flex:1" onclick="cashoutAv()">CASHOUT 💰</button><button class="btn" style="background:#1e2e4f;color:#fff;flex:1" onclick="autoAv()">AUTO</button></div><div id="aviMsg" style="font-size:11px;margin-top:8px"></div><div style="display:flex;gap:4px;margin-top:10px;overflow:auto"><span style="background:#1e2e4f;padding:4px 8px;border-radius:10px;font-size:9px">2.34x</span><span style="background:#1e2e4f;padding:4px 8px;border-radius:10px;font-size:9px">1.12x</span><span style="background:#ff2222;padding:4px 8px;border-radius:10px;font-size:9px">💥 1.01x</span><span style="background:#00c853;padding:4px 8px;border-radius:10px;font-size:9px">8.45x</span><span style="background:#1e2e4f;padding:4px 8px;border-radius:10px;font-size:9px">3.21x</span></div></div></div>
+<div id="view-cas" style="display:none"><div class="grid2"><div class="casinoCard"><div style="font-size:28px" id="slots">🍒|🍋|💎</div><input id="slotStake" type="number" placeholder="500" style="width:100%;padding:8px;border-radius:8px;background:#0a1120;color:#fff;border:1px solid #31487f;margin:6px 0"><button class="btn" onclick="spinSlot()">SPIN 🎰</button><div id="slotMsg" style="font-size:10px;margin-top:4px"></div></div><div class="casinoCard"><div style="font-size:32px" id="dice">🎲 0</div><input id="diceStake" type="number" placeholder="500" style="width:100%;padding:8px;border-radius:8px;background:#0a1120;color:#fff;border:1px solid #31487f;margin:6px 0"><button class="btn" onclick="rollDice()">ROLL 🎲</button><div id="diceMsg" style="font-size:10px;margin-top:4px"></div><div style="font-size:8px;color:#8aa0c8;margin-top:6px">Win if <50 = x2</div></div></div><div style="background:#1a2744;margin:10px;border-radius:12px;padding:14px;border:1px solid #2a3c60;text-align:center"><div style="font-size:24px">🃏 BLACKJACK</div><div style="font-size:11px;color:#8aa0c8">Coming soon - Bet now wins x2</div><input id="bjStake" type="number" placeholder="1000" style="width:100%;padding:10px;border-radius:8px;background:#0a1120;color:#fff;border:1px solid #31487f;margin:8px 0"><button class="btn" onclick="playBJ()">PLAY 🃏 (Win x2.5)</button><div id="bjMsg" style="font-size:11px"></div></div></div>
+<div id="view-bets" style="display:none"><div class="subTabs"><span id="f-all" class="on" onclick="filterBets('all')">ALL</span><span id="f-pending" onclick="filterBets('pending')">PENDING ⏳</span><span id="f-won" onclick="filterBets('won')">WON ✅</span><span id="f-lost" onclick="filterBets('lost')">LOST ❌</span></div><div id="betHistory" style="max-height:70vh;overflow:auto"></div></div>
+<div class="slip" id="S"><div style="display:flex;justify-content:space-between"><b id="T" style="font-size:12px">Betslip (0)</b><span><span style="background:#ffcc00;color:#000;padding:5px 12px;border-radius:15px;font-size:10px;font-weight:900" onclick="bookBet()">BOOK CODE</span> <span onclick="clr()" style="color:#ff6666;font-size:12px;margin-left:8px">Clear ✕</span></span></div><div id="I" style="margin:8px 0"></div><div style="background:#0a1120;border-radius:12px;padding:12px"><input id="K" type="number" placeholder="Stake UGX min 1000" style="width:100%;padding:12px;border-radius:10px;background:#1a2744;color:#fff;border:1px solid #31487f"><div style="display:flex;justify-content:space-between;margin-top:8px;font-size:11px"><span>Total Odds:</span><b id="totOdds" style="color:#ffcc00">0.00</b></div><div style="display:flex;justify-content:space-between;margin:6px 0;font-size:14px;font-weight:900"><span>Potential Win:</span><b id="W" style="color:#00ff88">UGX 0</b></div><button class="btn" onclick="placeBet()">PLACE BET ➔</button></div></div>
+<div class="box" id="LB"><div class="card"><h3 style="color:#ffcc00;text-align:center">SANBET LOGIN / JOIN</h3><div style="display:flex;gap:6px;margin:12px 0"><button id="tbL" class="tb on" onclick="sw('L')">LOGIN</button><button id="tbR" class="tb" onclick="sw('R')">REGISTER</button></div><div id="fL"><input id="phL" placeholder="Phone: 07XXXXXXXX"><input id="pwL" type="password" placeholder="Password"><button class="btn" onclick="doLogin()">LOGIN NOW ➔</button></div><div id="fR" style="display:none"><input id="phR" placeholder="Phone: 07XXXXXXXX"><input id="pwR" type="password" placeholder="Password min 4"><input id="pwR2" type="password" placeholder="Confirm"><div style="background:#0a3a1f;border-radius:8px;padding:10px;text-align:center;font-size:12px;margin:8px 0;color:#00ff88;font-weight:900">🎁 100% BONUS UGX 10,000 FREE!</div><button class="btn" onclick="doReg()">REGISTER + BONUS ➔</button></div><button class="btn" style="background:#1e2e4f;color:#fff" onclick="closeL()">CLOSE</button><p id="msg" style="font-size:11px;color:#ff6666;text-align:center;margin-top:8px;font-weight:700"></p></div></div>
+<div class="box" id="MB"><div class="card"><h3 id="mTitle" style="color:#ffcc00;text-align:center">DEPOSIT REAL MTN</h3><div id="mDep"><select id="depNet"><option>MTN MoMo - REAL</option><option>Airtel Money</option></select><input id="depPhone" placeholder="Phone: 07XXXXXXXX"><input id="depAmt" type="number" placeholder="Amount min 2000"><button class="btn" style="background:#00c853;color:#fff" onclick="doDep()">DEPOSIT NOW ➔</button><div style="text-align:center;margin-top:8px"><small style="color:#7a8aaa">Status: <span id="keyStatus">Checking...</span></small><br><button style="background:#1a2744;border:1px solid #31487f;color:#ffcc00;padding:6px 12px;border-radius:15px;font-size:10px;margin-top:6px" onclick="setupMTN()">⚙️ Setup MTN Keys</button></div></div><div id="mWith" style="display:none"><select id="withNet"><option>MTN MoMo</option><option>Airtel</option></select><input id="withPhone" placeholder="Phone"><input id="withAmt" type="number" placeholder="Min 5000"><div style="font-size:11px;color:#ffcc00">Balance: <b id="withBal">UGX 0</b></div><button class="btn" style="background:#ff6d00;color:#fff" onclick="doWith()">WITHDRAW ➔</button></div><div id="mHist" style="display:none"><div id="histList"></div></div><button class="btn" style="background:#1e2e4f;color:#fff" onclick="closeM()">CLOSE</button><p id="mMsg" style="font-size:11px;text-align:center;margin-top:8px"></p></div></div>
+<div class="box" id="AB"><div class="card" style="max-width:480px"><div style="display:flex;justify-content:space-between"><h3 style="color:#ffcc00">🔧 ADMIN PANEL</h3><span onclick="closeAdmin()" style="color:#ff4444;font-size:22px;font-weight:900">✕</span></div><div style="background:#0a1120;border-radius:10px;padding:10px;margin:10px 0;font-size:11px"><div>Total Users: <b id="adUsers">0</b> | Total Bets: <b id="adBets">0</b> | Total Revenue: <b id="adRev" style="color:#00ff88">UGX 0</b></div></div><div style="display:flex;gap:6px"><button class="tb on" onclick="showAdminTab('users')">USERS</button><button class="tb" onclick="showAdminTab('allBets')">ALL BETS</button><button class="tb" onclick="showAdminTab('settle')">SETTLE BETS</button></div><div id="adUsersList" style="max-height:50vh;overflow:auto;margin-top:10px;font-size:11px"></div><div id="adAllBetsList" style="max-height:50vh;overflow:auto;margin-top:10px;font-size:11px;display:none"></div><div id="adSettleList" style="max-height:50vh;overflow:auto;margin-top:10px;font-size:11px;display:none"><button class="btn" style="background:#00c853" onclick="settleAllWon()">💰 SETTLE ALL PENDING AS WON</button><button class="btn" style="background:#ff4444" onclick="settleAllLost()">❌ SETTLE ALL AS LOST</button><div style="font-size:10px;color:#8aa0c8;margin-top:8px">Settle manually to control wins - Real bookmaker control!</div></div></div></div>
 <script>
-// ===== MTN AUTO SETUP =====
-let MTN_CONFIG = JSON.parse(localStorage.getItem('mtn_keys')||'null') || {SUBSCRIPTION_KEY:"",API_USER:"",API_KEY:"",TARGET_ENV:"sandbox"};
-function checkKeys(){let s=document.getElementById('keyStatus');if(!s)return;if(!MTN_CONFIG.SUBSCRIPTION_KEY){s.innerHTML='<span style="color:#ff4444">❌ Not setup</span>'}else{s.innerHTML='<span style="color:#00ff88">✅ REAL MTN Ready</span>'}}setTimeout(checkKeys,500);
-function setupMTN(){let sub=prompt("1/3 - MTN SUBSCRIPTION KEY:",MTN_CONFIG.SUBSCRIPTION_KEY||"");if(!sub||sub.length<10)return;let user=prompt("2/3 - MTN API USER ID:",MTN_CONFIG.API_USER||"");if(!user||user.length<10)return;let key=prompt("3/3 - MTN API KEY:",MTN_CONFIG.API_KEY||"");if(!key||key.length<10)return;let env=prompt("Environment? sandbox = test, mtnuganda = REAL MONEY","sandbox");MTN_CONFIG={SUBSCRIPTION_KEY:sub.trim(),API_USER:user.trim(),API_KEY:key.trim(),TARGET_ENV:(env||"sandbox").trim()};localStorage.setItem('mtn_keys',JSON.stringify(MTN_CONFIG));checkKeys();alert("✅ MTN Saved!")}
+let MTN_CONFIG=JSON.parse(localStorage.getItem('mtn_keys')||'null')||{SUBSCRIPTION_KEY:"",API_USER:"",API_KEY:"",TARGET_ENV:"sandbox"};
+function checkKeys(){let s=document.getElementById('keyStatus');if(!s)return;if(!MTN_CONFIG.SUBSCRIPTION_KEY)s.innerHTML='<span style="color:#ff4444">❌ Not setup</span>';else s.innerHTML='<span style="color:#00ff88">✅ REAL MTN Ready</span>'}setTimeout(checkKeys,400);
+function setupMTN(){let sub=prompt("1/3 - SUBSCRIPTION KEY:",MTN_CONFIG.SUBSCRIPTION_KEY||"");if(!sub||sub.length<10)return;let user=prompt("2/3 - API USER:",MTN_CONFIG.API_USER||"");if(!user||user.length<10)return;let key=prompt("3/3 - API KEY:",MTN_CONFIG.API_KEY||"");if(!key||key.length<10)return;let env=prompt("Environment? sandbox=test, mtnuganda=REAL","sandbox");MTN_CONFIG={SUBSCRIPTION_KEY:sub.trim(),API_USER:user.trim(),API_KEY:key.trim(),TARGET_ENV:(env||"sandbox").trim()};localStorage.setItem('mtn_keys',JSON.stringify(MTN_CONFIG));checkKeys();alert("✅ MTN Saved!")}
 
-// ===== DATA =====
-let users=JSON.parse(localStorage.getItem('sanbet_users')||'{}');
-let cur=localStorage.getItem('sanbet_cur');
-let bets=[];
-let myBets=JSON.parse(localStorage.getItem('sanbet_mybets_'+cur)||'[]');
+let users=JSON.parse(localStorage.getItem('sanbet_users')||'{}');let cur=localStorage.getItem('sanbet_cur');let bets=[];let myBets=cur?JSON.parse(localStorage.getItem('sanbet_mybets_'+cur)||'[]'):[];let aviStake=0,aviActive=false,aviMult=1,aviInterval=null;
 
 const todayMatches=[
-{id:"MCARS",league:"Premier League",time:"Today 21:00",home:"Man City",away:"Arsenal",o1:1.85,ox:3.40,o2:2.10,live:false},
-{id:"BARREAL",league:"La Liga",time:"Today 22:00",home:"Barcelona",away:"Real Madrid",o1:2.20,ox:3.60,o2:1.95,live:false},
-{id:"VIPKCCA",league:"UPL",time:"Today 16:00",home:"Vipers SC",away:"KCCA FC",o1:2.05,ox:3.10,o2:2.30,live:false},
-{id:"MUNLIV",league:"EPL",time:"Today 19:30",home:"Man Utd",away:"Liverpool",o1:2.45,ox:3.40,o2:2.85,live:false},
-{id:"UGAKEN",league:"AFCON",time:"Tomorrow 18:00",home:"Uganda",away:"Kenya",o1:2.60,ox:3.10,o2:2.75,live:false},
+{id:"MCARS",league:"Premier League",time:"Today 21:00",home:"Man City",away:"Arsenal",o1:1.85,ox:3.40,o2:2.10},
+{id:"BARREAL",league:"La Liga",time:"Today 22:00",home:"Barcelona",away:"Real Madrid",o1:2.20,ox:3.60,o2:1.95},
+{id:"VIPKCCA",league:"UPL",time:"Today 16:00",home:"Vipers SC",away:"KCCA FC",o1:2.05,ox:3.10,o2:2.30},
+{id:"MUNLIV",league:"EPL",time:"Today 19:30",home:"Man Utd",away:"Liverpool",o1:2.45,ox:3.40,o2:2.85},
+{id:"UGAKEN",league:"AFCON",time:"Tomorrow 18:00",home:"Uganda",away:"Kenya",o1:2.60,ox:3.10,o2:2.75},
+{id:"EXPELLA",league:"UPL",time:"Today 14:00",home:"Express FC",away:"SC Villa",o1:2.20,ox:3.00,o2:2.80},
+{id:"CHETOT",league:"EPL",time:"Today 17:30",home:"Chelsea",away:"Tottenham",o1:2.10,ox:3.30,o2:3.00},
+{id:"ATMSEV",league:"LaLiga",time:"Sun 21:00",home:"Atletico",away:"Sevilla",o1:1.80,ox:3.40,o2:4.00},
 ];
-
 const liveMatches=[
 {id:"MCARS_L",league:"Premier League LIVE",time:"67' 1-0",home:"Man City",away:"Arsenal",o1:1.35,ox:4.50,o2:8.50,live:true,score:"1-0"},
 {id:"BARREAL_L",league:"La Liga LIVE",time:"34' 1-1",home:"Barcelona",away:"Real Madrid",o1:2.80,ox:2.90,o2:2.40,live:true,score:"1-1"},
 {id:"VIPLIVE",league:"UPL LIVE",time:"78' 0-0",home:"Vipers SC",away:"KCCA FC",o1:2.90,ox:2.10,o2:3.40,live:true,score:"0-0"},
+{id:"LIVARS_L",league:"EPL LIVE",time:"12' 0-0",home:"Liverpool",away:"Arsenal",o1:2.10,ox:3.20,o2:3.10,live:true,score:"0-0"},
+{id:"KCCAVIP_L",league:"UPL LIVE",time:"45' 1-2",home:"KCCA",away:"Vipers",o1:4.20,ox:3.80,o2:1.65,live:true,score:"1-2"},
 ];
-
 const upcomingMatches=[
-{id:"UPL1",league:"UPL",time:"Sat 15:00",home:"Express FC",away:"SC Villa",o1:2.20,ox:3.00,o2:2.80},
-{id:"UPL2",league:"UPL",time:"Sat 16:00",home:"URA FC",away:"BUL FC",o1:1.95,ox:3.20,o2:3.30},
-{id:"EPL1",league:"EPL",time:"Sun 17:30",home:"Chelsea",away:"Tottenham",o1:2.10,ox:3.30,o2:3.00},
-{id:"LAL1",league:"LaLiga",time:"Sun 21:00",home:"Atletico",away:"Sevilla",o1:1.80,ox:3.40,o2:4.00},
+{id:"UPL1",league:"UPL",time:"Sat 15:00",home:"Express FC",away:"SC Villa",o1:2.20,ox:3.00,o2:2.80},{id:"UPL2",league:"UPL",time:"Sat 16:00",home:"URA FC",away:"BUL FC",o1:1.95,ox:3.20,o2:3.30},
+{id:"EPL1",league:"EPL",time:"Sun 17:30",home:"Chelsea",away:"Tottenham",o1:2.10,ox:3.30,o2:3.00},{id:"LAL1",league:"LaLiga",time:"Sun 21:00",home:"Atletico",away:"Sevilla",o1:1.80,ox:3.40,o2:4.00},
+{id:"SER1",league:"Serie",time:"Sun 19:45",home:"Juventus",away:"AC Milan",o1:2.30,ox:3.20,o2:2.90},{id:"GER1",league:"Bundes",time:"Sat 16:30",home:"Bayern",away:"Dortmund",o1:1.75,ox:4.00,o2:3.80},
+{id:"UPL3",league:"UPL",time:"Sun 15:00",home:"Onduparaka",away:"Arua Hill",o1:2.40,ox:2.90,o2:2.70},{id:"EPL2",league:"EPL",time:"Mon 20:00",home:"Man City",away:"Newcastle",o1:1.60,ox:4.20,o2:4.50},
+{id:"UPL4",league:"UPL",time:"Mon 16:00",home:"Villa",away:"KCCA",o1:2.10,ox:3.10,o2:3.00},{id:"FRA1",league:"Ligue1",time:"Sun 20:45",home:"PSG",away:"Lyon",o1:1.50,ox:4.50,o2:5.00},
 ];
-
-function init(){
-  if(cur){
-    document.getElementById('Lbtn').innerText='LOGOUT ('+cur.slice(-4)+')';
-    document.getElementById('Lbtn').style.background='#ff4444';
-    document.getElementById('Lbtn').style.color='#fff';
-    document.getElementById('moneyBar').style.display='flex';
-    myBets=JSON.parse(localStorage.getItem('sanbet_mybets_'+cur)||'[]');
-    updateBal();
-  }
-  renderToday();renderLive();renderUpcoming(upcomingMatches);renderBetHistory('all');
-}
+function init(){if(cur){document.getElementById('Lbtn').innerText='LOGOUT ('+cur.slice(-4)+')';document.getElementById('Lbtn').style.background='#ff4444';document.getElementById('Lbtn').style.color='#fff';document.getElementById('moneyBar').style.display='flex';myBets=JSON.parse(localStorage.getItem('sanbet_mybets_'+cur)||'[]');updateBal()}renderToday();renderLive();renderUpcoming(upcomingMatches);renderBetHistory('all')}
 function updateBal(){let b=parseFloat(localStorage.getItem('bal_'+cur)||'0');document.getElementById('B').innerText='UGX '+b.toLocaleString();let wb=document.getElementById('withBal');if(wb)wb.innerText='UGX '+b.toLocaleString();return b}
-function getBal(){return parseFloat(localStorage.getItem('bal_'+cur)||'0')}
-function setBal(v){localStorage.setItem('bal_'+cur,v);updateBal()}
-
-function card(m){
-  return `<div class="match ${m.live?'live':''}">
-    <div class="matchHead">
-      <div class="team"><b>${m.home} vs ${m.away}</b><br><small>${m.live?'🔴 '+m.score+' • ':''}${m.time} • ${m.league}</small></div>
-    </div>
-    <div class="oddsRow">
-      <button id="b-${m.id}-1" onclick="add(this,'${m.id}','${m.home}','${m.o1}')"><small>1</small>${m.o1}</button>
-      <button id="b-${m.id}-X" onclick="add(this,'${m.id}','Draw','${m.ox}')"><small>X</small>${m.ox}</button>
-      <button id="b-${m.id}-2" onclick="add(this,'${m.id}','${m.away}','${m.o2}')"><small>2</small>${m.o2}</button>
-    </div>
-  </div>`;
-}
+function getBal(){return parseFloat(localStorage.getItem('bal_'+cur)||'0')}function setBal(v){localStorage.setItem('bal_'+cur,v);updateBal()}
+function card(m){return `<div class="match ${m.live?'live':''}"><div class="matchHead"><div class="team"><b>${m.home} vs ${m.away}</b><br><small>${m.live?'🔴 '+m.score+' • ':''}${m.time} • ${m.league}</small></div></div><div class="oddsRow"><button id="b-${m.id}-1" onclick="add(this,'${m.id}','${m.home}','${m.o1}')"><small>1</small>${m.o1}</button><button id="b-${m.id}-X" onclick="add(this,'${m.id}','Draw','${m.ox}')"><small>X</small>${m.ox}</button><button id="b-${m.id}-2" onclick="add(this,'${m.id}','${m.away}','${m.o2}')"><small>2</small>${m.o2}</button></div></div>`}
 function renderToday(){document.getElementById('todayList').innerHTML=todayMatches.map(card).join('')}
-function renderLive(){document.getElementById('liveList').innerHTML=liveMatches.map(card).join('');document.getElementById('liveNum').innerText=liveMatches.length;document.getElementById('liveCount').innerText=liveMatches.length+110}
+function renderLive(){document.getElementById('liveList').innerHTML=liveMatches.map(card).join('');document.getElementById('liveNum').innerText=liveMatches.length+' LIVE';document.getElementById('liveCount').innerText=liveMatches.length+110}
 function renderUpcoming(list){document.getElementById('upcomList').innerHTML=list.map(card).join('')}
-
-function showMain(t){
-  document.querySelectorAll('.tabsTop b').forEach(b=>b.classList.remove('on'));
-  document.getElementById('t-'+t).classList.add('on');
-  ['up','live','upcom','bets'].forEach(x=>document.getElementById('view-'+x).style.display=x===t?'block':'none');
-  if(t==='bets')renderBetHistory('all');
-}
+function showMain(t){document.querySelectorAll('.tabsTop b').forEach(b=>b.classList.remove('on'));document.getElementById('t-'+t).classList.add('on');['up','live','upcom','av','cas','bets'].forEach(x=>document.getElementById('view-'+x).style.display=x===t?'block':'none');if(t==='bets')renderBetHistory('all')}
 function filterUp(l){if(l==='all')renderUpcoming(upcomingMatches);else renderUpcoming(upcomingMatches.filter(m=>m.league.includes(l)));document.querySelectorAll('#upcomFilter span').forEach(s=>s.classList.remove('on'));event.target.classList.add('on')}
 
-// ===== BETSLIP =====
-function add(el,mid,sel,odd){
-  let isOn=el.classList.contains('on');
-  document.querySelectorAll(`[id^="b-${mid}-"]`).forEach(b=>b.classList.remove('on'));
-  if(!isOn)el.classList.add('on');
-  let i=bets.findIndex(b=>b.mid===mid);
-  if(i>-1&&!isOn){bets[i]={mid,sel,odd}}else if(!isOn){bets.push({mid,sel,odd})}else{bets.splice(i,1)}
-  upd();
-}
-function upd(){
-  let sl=document.getElementById('S');
-  if(bets.length==0){sl.classList.remove('show');return}
-  sl.classList.add('show');
-  let h='',tot=1;
-  bets.forEach(b=>{h+=`<div class="betItem"><span>${b.mid} - ${b.sel}</span><b style="color:#ffcc00">${b.odd}</b></div>`;tot*=parseFloat(b.odd)});
-  document.getElementById('I').innerHTML=h;
-  document.getElementById('T').innerText='Betslip ('+bets.length+')';
-  document.getElementById('totOdds').innerText=tot.toFixed(2);
-  document.getElementById('I').dataset.tot=tot;
-  calc();
-}
+function add(el,mid,sel,odd){let isOn=el.classList.contains('on');document.querySelectorAll(`[id^="b-${mid}-"]`).forEach(b=>b.classList.remove('on'));if(!isOn)el.classList.add('on');let i=bets.findIndex(b=>b.mid===mid);if(i>-1&&!isOn){bets[i]={mid,sel,odd}}else if(!isOn){bets.push({mid,sel,odd})}else{bets.splice(i,1)}upd()}
+function upd(){let sl=document.getElementById('S');if(bets.length==0){sl.classList.remove('show');return}sl.classList.add('show');let h='',tot=1;bets.forEach(b=>{h+=`<div style="display:flex;justify-content:space-between;padding:8px 10px;background:#1a2744;border-radius:8px;margin:4px 0;border:1px solid #2a3c60;font-size:11px"><span>${b.mid} - ${b.sel}</span><b style="color:#ffcc00">${b.odd}</b></div>`;tot*=parseFloat(b.odd)});document.getElementById('I').innerHTML=h;document.getElementById('T').innerText='Betslip ('+bets.length+')';document.getElementById('totOdds').innerText=tot.toFixed(2);document.getElementById('I').dataset.tot=tot;calc()}
 function calc(){let st=parseFloat(document.getElementById('K').value)||0,tot=parseFloat(document.getElementById('I').dataset.tot)||0;document.getElementById('W').innerText='UGX '+(st*tot).toFixed(0)}
-document.getElementById('K')?.addEventListener('input',calc);
+document.getElementById('K').addEventListener('input',calc);
 function clr(){bets=[];document.querySelectorAll('.oddsRow button').forEach(b=>b.classList.remove('on'));upd()}
-function placeBet(){
-  if(!cur){openL();return}
-  let st=parseFloat(document.getElementById('K').value);
-  if(!st||st<1000){alert('Min stake 1000');return}
-  if(st>getBal()){alert('Balance UGX '+getBal());return}
-  let tot=parseFloat(document.getElementById('I').dataset.tot)||1;
-  let win=Math.floor(st*tot);
-  let code='SB'+Math.floor(Math.random()*900000+100000);
-  let betObj={code,date:new Date().toLocaleString(),stake:st,odds:tot.toFixed(2),win:win,selections:[...bets],status:'pending'};
-  myBets.unshift(betObj);
-  localStorage.setItem('sanbet_mybets_'+cur,JSON.stringify(myBets));
-  setBal(getBal()-st);
-  // Simulate win/loss after 5 sec for demo
-  setTimeout(()=>{let arr=JSON.parse(localStorage.getItem('sanbet_mybets_'+cur)||'[]');let idx=arr.findIndex(b=>b.code===code);if(idx>-1){let r=Math.random();arr[idx].status=r>0.6?'won':r>0.3?'pending':'lost';if(arr[idx].status==='won'){let b=parseFloat(localStorage.getItem('bal_'+cur)||'0');localStorage.setItem('bal_'+cur,b+arr[idx].win)}localStorage.setItem('sanbet_mybets_'+cur,JSON.stringify(arr))}},8000);
-  alert(`✅ BET PLACED!\nCode: ${code}\nStake: UGX ${st}\nPotential: UGX ${win}`);
-  clr();renderBetHistory('all');
-}
-function bookBet(){if(bets.length==0){alert('Add selections');return}let code='SB'+Math.floor(Math.random()*900000+100000);alert('📋 BOOKING CODE: '+code+'\nOdds: '+document.getElementById('totOdds').innerText)}
+function placeBet(){if(!cur){openL();return}let st=parseFloat(document.getElementById('K').value);if(!st||st<1000){alert('Min 1000');return}if(st>getBal()){alert('Balance UGX '+getBal());return}let tot=parseFloat(document.getElementById('I').dataset.tot)||1;let win=Math.floor(st*tot);let code='SB'+Math.floor(Math.random()*900000+100000);let betObj={code,date:new Date().toLocaleString(),stake:st,odds:tot.toFixed(2),win:win,selections:[...bets],status:'pending',user:cur};myBets.unshift(betObj);localStorage.setItem('sanbet_mybets_'+cur,JSON.stringify(myBets));let all=JSON.parse(localStorage.getItem('sanbet_all_bets')||'[]');all.unshift(betObj);localStorage.setItem('sanbet_all_bets',JSON.stringify(all));setBal(getBal()-st);alert(`✅ BET PLACED! Code: ${code} Stake: UGX ${st} Win: UGX ${win} → Check MY BETS → PENDING`);clr();renderBetHistory('all')}
+function bookBet(){if(bets.length==0){alert('Add selections');return}let code='SB'+Math.floor(Math.random()*900000+100000);alert('📋 BOOK CODE: '+code+' Odds: '+document.getElementById('totOdds').innerText)}
 
-function renderBetHistory(filter){
-  let list=myBets;
-  if(filter!=='all')list=list.filter(b=>b.status===filter);
-  document.querySelectorAll('#view-bets.subTabs span').forEach(s=>s.classList.remove('on'));
-  let el=document.getElementById('f-'+filter);if(el)el.classList.add('on');
-  let html=list.length?'':'<div style="text-align:center;padding:30px;color:#5a6a8a">No bets yet<br>Place bet to see here</div>';
-  list.forEach(b=>{
-    let badge=b.status==='won'?'<span class="badge won">WON</span>':b.status==='pending'?'<span class="badge pending">PENDING</span>':'<span class="badge lost">LOST</span>';
-    html+=`<div style="background:#1a2744;margin:6px 10px;border-radius:10px;padding:10px;border:1px solid #2a3c60">
-      <div style="display:flex;justify-content:space-between"><b style="font-size:11px">Code: ${b.code}</b>${badge}</div>
-      <div style="font-size:10px;color:#8aa0c8;margin:4px 0">${b.date} • ${b.selections.length} selections</div>
-      <div style="font-size:10px">${b.selections.map(s=>s.mid+': '+s.sel+' @'+s.odd).join(' • ')}</div>
-      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:12px"><span>Stake: UGX ${b.stake} | Odds: ${b.odds}</span><b style="color:${b.status==='won'?'#00ff88':'#ffcc00'}">Win: UGX ${b.win}</b></div>
-    </div>`;
-  });
-  document.getElementById('betHistory').innerHTML=html;
-}
+function renderBetHistory(filter){let list=myBets;if(filter!=='all')list=list.filter(b=>b.status===filter);document.querySelectorAll('#view-bets.subTabs span').forEach(s=>s.classList.remove('on'));let el=document.getElementById('f-'+filter);if(el)el.classList.add('on');let html=list.length?'':'<div style="text-align:center;padding:30px;color:#5a6a8a">No bets - Place bet to see WON/PENDING</div>';list.forEach(b=>{let badge=b.status==='won'?'<span class="badge won">WON</span>':b.status==='pending'?'<span class="badge pending">PENDING</span>':'<span class="badge lost">LOST</span>';html+=`<div style="background:#1a2744;margin:6px 10px;border-radius:10px;padding:10px;border:1px solid #2a3c60"><div style="display:flex;justify-content:space-between"><b style="font-size:11px">Code: ${b.code}</b>${badge}</div><div style="font-size:10px;color:#8aa0c8;margin:4px 0">${b.date} • ${b.selections.length} sel • ${b.user}</div><div style="font-size:10px">${b.selections.map(s=>s.mid+': '+s.sel+' @'+s.odd).join(' • ')}</div><div style="display:flex;justify-content:space-between;margin-top:6px;font-size:12px"><span>Stake: UGX ${b.stake} | Odds: ${b.odds}</span><b style="color:${b.status==='won'?'#00ff88':'#ffcc00'}">Win: UGX ${b.win}</b></div></div>`});document.getElementById('betHistory').innerHTML=html}
 function filterBets(f){renderBetHistory(f)}
 
-// ===== AUTH =====
+// AVIATOR
+function placeAv(){if(!cur){openL();return}let st=parseFloat(document.getElementById('aviStake').value);if(!st||st<1000){alert('Min 1000');return}if(st>getBal()){alert('Balance '+getBal());return}if(aviActive){alert('Game running! Cashout first');return}aviStake=st;setBal(getBal()-st);aviActive=true;aviMult=1;document.getElementById('aviMsg').innerHTML='<span style="color:#00ff88">✈️ Flying... Click CASHOUT before crash!</span>';aviInterval=setInterval(()=>{aviMult+=0.05+Math.random()*0.15;document.getElementById('mult').innerText=aviMult.toFixed(2)+'x ✈️';if(Math.random()<0.02 || aviMult>8){clearInterval(aviInterval);aviActive=false;document.getElementById('mult').innerText='💥 '+aviMult.toFixed(2)+'x CRASHED!';document.getElementById('aviMsg').innerHTML='<span style="color:#ff4444">💥 CRASHED @ '+aviMult.toFixed(2)+'x - Lost UGX '+aviStake+'</span>';aviStake=0;setTimeout(()=>{document.getElementById('mult').innerText='1.00x ✈️'},2000)}},120)}
+function cashoutAv(){if(!aviActive||aviStake==0){alert('No active game');return}clearInterval(aviInterval);aviActive=false;let win=Math.floor(aviStake*aviMult);setBal(getBal()+win);document.getElementById('aviMsg').innerHTML='<span style="color:#00ff88">✅ CASHOUT @ '+aviMult.toFixed(2)+'x - Won UGX '+win+'!</span>';document.getElementById('mult').innerText=aviMult.toFixed(2)+'x 💰 WIN!';aviStake=0;setTimeout(()=>{document.getElementById('mult').innerText='1.00x ✈️'},2000)}
+function autoAv(){alert('Auto cashout at 2.00x - Place bet then it auto cashouts!');placeAv();setTimeout(()=>{if(aviActive && aviMult>=2){cashoutAv()}},2000)}
+
+// CASINO
+function spinSlot(){if(!cur){openL();return}let st=parseFloat(document.getElementById('slotStake').value)||500;if(st>getBal()){alert('Balance '+getBal());return}setBal(getBal()-st);let sym=['🍒','🍋','💎','7️⃣','🍉'];let a=sym[Math.floor(Math.random()*sym.length)],b=sym[Math.floor(Math.random()*sym.length)],c=sym[Math.floor(Math.random()*sym.length)];document.getElementById('slots').innerText=a+'|'+b+'|'+c;if(a===b&&b===c){let win=st*10;setBal(getBal()+win);document.getElementById('slotMsg').innerHTML='<span style="color:#00ff88">🎉 JACKPOT WIN UGX '+win+'!</span>'}else{document.getElementById('slotMsg').innerHTML='<span style="color:#ff6666">Lost - Try again</span>'}}
+function rollDice(){if(!cur){openL();return}let st=parseFloat(document.getElementById('diceStake').value)||500;if(st>getBal()){alert('Balance '+getBal());return}setBal(getBal()-st);let r=Math.floor(Math.random()*100)+1;document.getElementById('dice').innerText='🎲 '+r;if(r<50){let win=st*2;setBal(getBal()+win);document.getElementById('diceMsg').innerHTML='<span style="color:#00ff88">WIN UGX '+win+'! Rolled '+r+'</span>'}else{document.getElementById('diceMsg').innerHTML='<span style="color:#ff6666">LOSE '+r+' (>=50)</span>'}}
+function playBJ(){if(!cur){openL();return}let st=parseFloat(document.getElementById('bjStake').value)||1000;if(st>getBal()){alert('Balance '+getBal());return}setBal(getBal()-st);if(Math.random()>0.5){let win=Math.floor(st*2.5);setBal(getBal()+win);document.getElementById('bjMsg').innerHTML='<span style="color:#00ff88">🃏 BLACKJACK WIN UGX '+win+'!</span>'}else{document.getElementById('bjMsg').innerHTML='<span style="color:#ff4444">🃏 Dealer wins - Lost</span>'}}
+
+// AUTH
 function sw(x){document.getElementById('tbL').classList.toggle('on',x==='L');document.getElementById('tbR').classList.toggle('on',x==='R');document.getElementById('fL').style.display=x==='L'?'block':'none';document.getElementById('fR').style.display=x==='R'?'block':'none'}
 function openL(){if(cur){if(confirm('Logout '+cur+'?')){localStorage.removeItem('sanbet_cur');cur=null;location.reload()}return}document.getElementById('LB').classList.add('show');sw('L')}
 function closeL(){document.getElementById('LB').classList.remove('show')}
-function doReg(){let ph=document.getElementById('phR').value.trim(),pw=document.getElementById('pwR').value,pw2=document.getElementById('pwR2').value,m=document.getElementById('msg');if(ph.length<10){m.innerText='❌ Valid phone 07XXXXXXXX';return}if(pw.length<4){m.innerText='❌ Password min 4';return}if(pw!==pw2){m.innerText='❌ No match';return}if(users[ph]){m.innerText='❌ Already registered! Login';sw('L');return}users[ph]=pw;localStorage.setItem('sanbet_users',JSON.stringify(users));localStorage.setItem('bal_'+ph,'10000');localStorage.setItem('sanbet_cur',ph);cur=ph;localStorage.setItem('sanbet_mybets_'+ph,JSON.stringify([]));m.innerHTML='<span style="color:#00ff88">✅ SUCCESS 10K BONUS!</span>';setTimeout(()=>{closeL();location.reload()},900)}
-function doLogin(){let ph=document.getElementById('phL').value.trim(),pw=document.getElementById('pwL').value,m=document.getElementById('msg');if(!users[ph]){m.innerText='❌ Not registered! Register first';sw('R');return}if(users[ph]!==pw){m.innerText='❌ Wrong password';return}localStorage.setItem('sanbet_cur',ph);cur=ph;m.innerHTML='<span style="color:#00ff88">✅ Welcome!</span>';setTimeout(()=>{closeL();location.reload()},700)}
+function doReg(){let ph=document.getElementById('phR').value.trim(),pw=document.getElementById('pwR').value,pw2=document.getElementById('pwR2').value,m=document.getElementById('msg');if(ph.length<10){m.innerText='❌ Valid phone';return}if(pw.length<4){m.innerText='❌ Min 4';return}if(pw!==pw2){m.innerText='❌ No match';return}if(users[ph]){m.innerText='❌ Already exists Login';sw('L');return}users[ph]=pw;localStorage.setItem('sanbet_users',JSON.stringify(users));localStorage.setItem('bal_'+ph,'10000');localStorage.setItem('sanbet_cur',ph);cur=ph;localStorage.setItem('sanbet_mybets_'+ph,JSON.stringify([]));m.innerHTML='<span style="color:#00ff88">✅ 10K BONUS! Reloading...</span>';setTimeout(()=>{closeL();location.reload()},800)}
+function doLogin(){let ph=document.getElementById('phL').value.trim(),pw=document.getElementById('pwL').value,m=document.getElementById('msg');if(!users[ph]){m.innerText='❌ Not registered';sw('R');return}if(users[ph]!==pw){m.innerText='❌ Wrong password';return}localStorage.setItem('sanbet_cur',ph);cur=ph;m.innerHTML='<span style="color:#00ff88">✅ Welcome!</span>';setTimeout(()=>{closeL();location.reload()},600)}
 
-// ===== MONEY =====
-function openMoney(t){if(!cur){openL();return}document.getElementById('MB').classList.add('show');document.getElementById('mDep').style.display=t==='dep'?'block':'none';document.getElementById('mWith').style.display=t==='with'?'block':'none';document.getElementById('mHist').style.display=t==='hist'?'block':'none';document.getElementById('mTitle').innerText=t==='dep'?'DEPOSIT - REAL MTN':t==='with'?'WITHDRAW':'HISTORY';document.getElementById('mMsg').innerText='';if(t==='with')updateBal();if(t==='hist')loadHist();checkKeys()}
+// MONEY
+function openMoney(t){if(!cur){openL();return}document.getElementById('MB').classList.add('show');document.getElementById('mDep').style.display=t==='dep'?'block':'none';document.getElementById('mWith').style.display=t==='with'?'block':'none';document.getElementById('mHist').style.display=t==='hist'?'block':'none';document.getElementById('mTitle').innerText=t==='dep'?'DEPOSIT REAL MTN':t==='with'?'WITHDRAW':'HISTORY';document.getElementById('mMsg').innerText='';if(t==='with')updateBal();if(t==='hist')loadHist();checkKeys()}
 function closeM(){document.getElementById('MB').classList.remove('show')}
-async function doDep(){
-  let phone=document.getElementById('depPhone').value.trim(),amt=parseFloat(document.getElementById('depAmt').value),msg=document.getElementById('mMsg');
-  if(phone.length<10||!amt||amt<2000){msg.innerText='❌ Phone & min 2000';return}
-  if(!MTN_CONFIG.SUBSCRIPTION_KEY){msg.innerHTML='<span style="color:#ffcc00">⚙️ Setup MTN Keys first!</span>';setupMTN();return}
-  msg.innerHTML='<span style="color:#ffcc00">⏳ Sending REAL MTN prompt to '+phone+'...</span>';
-  try{
-    let momoPhone=phone.replace(/\D/g,'');if(momoPhone.startsWith('0'))momoPhone='256'+momoPhone.slice(1);
-    let tokenRes=await fetch('https://proxy.momoapi.mtn.com/collection/token/',{method:'POST',headers:{'Ocp-Apim-Subscription-Key':MTN_CONFIG.SUBSCRIPTION_KEY,'Authorization':'Basic '+btoa(MTN_CONFIG.API_USER+':'+MTN_CONFIG.API_KEY)}});
-    let tokenData=await tokenRes.json();
-    if(!tokenData.access_token){msg.innerText='❌ Token failed check keys';return}
-    let refId=crypto.randomUUID();
-    let payRes=await fetch('https://proxy.momoapi.mtn.com/collection/v1_0/requesttopay',{method:'POST',headers:{'Authorization':'Bearer '+tokenData.access_token,'X-Reference-Id':refId,'X-Target-Environment':MTN_CONFIG.TARGET_ENV,'Ocp-Apim-Subscription-Key':MTN_CONFIG.SUBSCRIPTION_KEY,'Content-Type':'application/json'},body:JSON.stringify({amount:MTN_CONFIG.TARGET_ENV==='sandbox'?'100':amt.toString(),currency:MTN_CONFIG.TARGET_ENV==='sandbox'?'EUR':'UGX',externalId:refId,payer:{partyIdType:'MSISDN',partyId:momoPhone},payerMessage:'SANBET Deposit',payeeNote:'SANBET'})});
-    if(payRes.status===202){
-      msg.innerHTML='<span style="color:#00ff88">✅ Prompt sent! Check phone '+phone+' & enter PIN<br>Waiting...</span>';
-      let tries=0;let iv=setInterval(async()=>{tries++;let sRes=await fetch(`https://proxy.momoapi.mtn.com/collection/v1_0/requesttopay/${refId}`,{headers:{'Authorization':'Bearer '+tokenData.access_token,'X-Target-Environment':MTN_CONFIG.TARGET_ENV,'Ocp-Apim-Subscription-Key':MTN_CONFIG.SUBSCRIPTION_KEY}});let sd=await sRes.json();if(sd.status==='SUCCESSFUL'){clearInterval(iv);let nb=getBal()+amt;setBal(nb);msg.innerHTML='<span style="color:#00ff88">🎉 UGX '+amt+' Received! Balance: '+nb.toLocaleString()+'</span>'}else if(sd.status==='FAILED'||tries>25){clearInterval(iv);msg.innerText='❌ Failed: '+sd.status}},3000);
-    }else{msg.innerText='❌ MTN Error '+payRes.status}
-  }catch(e){msg.innerText='❌ Error: '+e.message+' (CORS? Use backend)'}
-}
-function doWith(){let phone=document.getElementById('withPhone').value.trim(),amt=parseFloat(document.getElementById('withAmt').value),msg=document.getElementById('mMsg');if(phone.length<10||!amt||amt<5000){msg.innerText='❌ Phone & min 5000';return}if(amt>getBal()){msg.innerText='❌ Balance UGX '+getBal();return}msg.innerHTML='<span style="color:#ffcc00">⏳ Sending UGX '+amt+' to '+phone+'...</span>';setTimeout(()=>{setBal(getBal()-amt);msg.innerHTML='<span style="color:#00ff88">✅ UGX '+(amt*0.95)+' Sent to '+phone+'!</span>'},1500)}
-function loadHist(){let arr=JSON.parse(localStorage.getItem('sanbet_mybets_'+cur)||'[]');document.getElementById('histList').innerHTML=arr.length?arr.slice(0,10).map(b=>`<div class="hRow"><span>${b.code} • ${b.date}</span><span>UGX ${b.stake}</span></div>`).join(''):'<div style="text-align:center;padding:20px;color:#5a6a8a">No history</div>'}
+async function doDep(){let phone=document.getElementById('depPhone').value.trim(),amt=parseFloat(document.getElementById('depAmt').value),msg=document.getElementById('mMsg');if(phone.length<10||!amt||amt<2000){msg.innerText='❌ Phone & min 2000';return}if(!MTN_CONFIG.SUBSCRIPTION_KEY){msg.innerText='⚙️ Setup MTN Keys first!';setupMTN();return}msg.innerHTML='<span style="color:#ffcc00">⏳ REAL MTN to '+phone+'...</span>';try{let momoPhone=phone.replace(/\D/g,'');if(momoPhone.startsWith('0'))momoPhone='256'+momoPhone.slice(1);let tokenRes=await fetch('https://proxy.momoapi.mtn.com/collection/token/',{method:'POST',headers:{'Ocp-Apim-Subscription-Key':MTN_CONFIG.SUBSCRIPTION_KEY,'Authorization':'Basic '+btoa(MTN_CONFIG.API_USER+':'+MTN_CONFIG.API_KEY)}});let tokenData=await tokenRes.json();if(!tokenData.access_token){msg.innerText='❌ Token failed';return}let refId=crypto.randomUUID();let payRes=await fetch('https://proxy.momoapi.mtn.com/collection/v1_0/requesttopay',{method:'POST',headers:{'Authorization':'Bearer '+tokenData.access_token,'X-Reference-Id':refId,'X-Target-Environment':MTN_CONFIG.TARGET_ENV,'Ocp-Apim-Subscription-Key':MTN_CONFIG.SUBSCRIPTION_KEY,'Content-Type':'application/json'},body:JSON.stringify({amount:MTN_CONFIG.TARGET_ENV==='sandbox'?'100':amt.toString(),currency:MTN_CONFIG.TARGET_ENV==='sandbox'?'EUR':'UGX',externalId:refId,payer:{partyIdType:'MSISDN',partyId:momoPhone},payerMessage:'SANBET Deposit',payeeNote:'SANBET'})});if(payRes.status===202){msg.innerHTML='<span style="color:#00ff88">✅ Prompt sent to '+phone+'! Enter PIN</span>';let tries=0;let iv=setInterval(async()=>{tries++;let sRes=await fetch(`https://proxy.momoapi.mtn.com/collection/v1_0/requesttopay/${refId}`,{headers:{'Authorization':'Bearer '+tokenData.access_token,'X-Target-Environment':MTN_CONFIG.TARGET_ENV,'Ocp-Apim-Subscription-Key':MTN_CONFIG.SUBSCRIPTION_KEY}});let sd=await sRes.json();if(sd.status==='SUCCESSFUL'){clearInterval(iv);let nb=getBal()+amt;setBal(nb);msg.innerHTML='<span style="color:#00ff88">🎉 UGX '+amt+' Received! Balance '+nb.toLocaleString()+'</span>'}else if(sd.status==='FAILED'||tries>25){clearInterval(iv);msg.innerText='❌ Failed '+sd.status}},3000)}else{msg.innerText='❌ MTN Error '+payRes.status}}catch(e){msg.innerText='❌ Error: '+e.message}}
+function doWith(){let phone=document.getElementById('withPhone').value.trim(),amt=parseFloat(document.getElementById('withAmt').value),msg=document.getElementById('mMsg');if(phone.length<10||!amt||amt<5000){msg.innerText='❌ Phone & min 5000';return}if(amt>getBal()){msg.innerText='❌ Balance '+getBal();return}msg.innerHTML='<span style="color:#ffcc00">⏳ Sending UGX '+amt+'...</span>';setTimeout(()=>{setBal(getBal()-amt);msg.innerHTML='<span style="color:#00ff88">✅ UGX '+(amt*0.95)+' Sent to '+phone+'!</span>'},1500)}
+function loadHist(){let arr=JSON.parse(localStorage.getItem('sanbet_mybets_'+cur)||'[]');document.getElementById('histList').innerHTML=arr.length?arr.slice(0,10).map(b=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #1a2440;font-size:11px"><span>${b.code} • ${b.date}</span><span>UGX ${b.stake}</span></div>`).join(''):'<div style="text-align:center;padding:20px;color:#5a6a8a">No history</div>'}
+
+// ADMIN
+function openAdmin(){document.getElementById('AB').classList.add('show');let allUsers=Object.keys(users).length;let allBets=JSON.parse(localStorage.getItem('sanbet_all_bets')||'[]');let rev=allBets.reduce((s,b)=>s+b.stake,0);document.getElementById('adUsers').innerText=allUsers;document.getElementById('adBets').innerText=allBets.length;document.getElementById('adRev').innerText='UGX '+rev.toLocaleString();showAdminTab('users')}
+function closeAdmin(){document.getElementById('AB').classList.remove('show')}
+function showAdminTab(t){document.getElementById('adUsersList').style.display=t==='users'?'block':'none';document.getElementById('adAllBetsList').style.display=t==='allBets'?'block':'none';document.getElementById('adSettleList').style.display=t==='settle'?'block':'none';if(t==='users'){let html='';Object.keys(users).forEach(ph=>{let bal=localStorage.getItem('bal_'+ph)||0;let bets=JSON.parse(localStorage.getItem('sanbet_mybets_'+ph)||'[]').length;html+=`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #1a2440"><span>${ph} • Bets: ${bets}</span><b style="color:#ffcc00">UGX ${parseInt(bal).toLocaleString()}</b></div>`});document.getElementById('adUsersList').innerHTML=html||'No users'}if(t==='allBets'){let all=JSON.parse(localStorage.getItem('sanbet_all_bets')||'[]');let html=all.slice(0,50).map(b=>`<div style="padding:8px;border-bottom:1px solid #1a2440"><div style="display:flex;justify-content:space-between"><b>${b.code} • ${b.user}</b><span class="badge ${b.status}">${b.status.toUpperCase()}</span></div><div style="font-size:10px">${b.date} • Stake ${b.stake} • Win ${b.win} • Odds ${b.odds}</div></div>`).join('');document.getElementById('adAllBetsList').innerHTML=html||'No bets'}}
+function settleAllWon(){if(!confirm('Settle ALL PENDING as WON? Users will get money!'))return;let all=JSON.parse(localStorage.getItem('sanbet_all_bets')||'[]');let count=0;all.forEach(b=>{if(b.status==='pending'){b.status='won';count++;let bal=parseFloat(localStorage.getItem('bal_'+b.user)||'0');localStorage.setItem('bal_'+b.user,bal+b.win);let userBets=JSON.parse(localStorage.getItem('sanbet_mybets_'+b.user)||'[]');let idx=userBets.findIndex(x=>x.code===b.code);if(idx>-1){userBets[idx].status='won';localStorage.setItem('sanbet_mybets_'+b.user,JSON.stringify(userBets))}}});localStorage.setItem('sanbet_all_bets',JSON.stringify(all));alert('✅ Settled '+count+' bets as WON!');closeAdmin()}
+function settleAllLost(){if(!confirm('Settle ALL PENDING as LOST?'))return;let all=JSON.parse(localStorage.getItem('sanbet_all_bets')||'[]');let count=0;all.forEach(b=>{if(b.status==='pending'){b.status='lost';count++;let userBets=JSON.parse(localStorage.getItem('sanbet_mybets_'+b.user)||'[]');let idx=userBets.findIndex(x=>x.code===b.code);if(idx>-1){userBets[idx].status='lost';localStorage.setItem('sanbet_mybets_'+b.user,JSON.stringify(userBets))}}});localStorage.setItem('sanbet_all_bets',JSON.stringify(all));alert('❌ Settled '+count+' as LOST');closeAdmin()}
 
 init();
-</script>
-</body>
-</html>
+</script></body></html>
